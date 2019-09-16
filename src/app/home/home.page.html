@@ -1,0 +1,64 @@
+<ion-header>
+  <ion-toolbar color="footer" text-center>
+    <ion-buttons slot="start">
+      <ion-back-button defaultHref="/"></ion-back-button>
+    </ion-buttons>
+    <ion-title>Solicitud Pasajes</ion-title>
+    <ion-buttons slot="end">
+      <ion-button (click)="presentPopoverTuCuenta($event)">
+        <ion-icon name="menu"></ion-icon>
+      </ion-button>
+    </ion-buttons>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <ion-slides pager="true">
+    <ion-slide>
+      <img src="../../assets/img/edi_5.webp" alt="">
+    </ion-slide>
+    <ion-slide>
+      <img src="../../assets/img/edi_5.webp " alt="">
+    </ion-slide>
+  </ion-slides>
+  <ion-item>
+    <ion-label text-center>Tipo de Pasaje</ion-label>
+  </ion-item>
+
+  <ion-toolbar>
+    <ion-buttons slot="start" margin-start>
+      <ion-button color="footer" fill="outline" shape="round" routerLink="/form-ticket-personal">
+        <ion-icon name="person" slot="start"> </ion-icon>
+        Personal
+      </ion-button>
+    </ion-buttons>
+    <ion-buttons slot="end" margin-end>
+      <ion-button color="footer" fill="outline" shape="round" routerLink="/form-ticket-laboral">
+        <ion-icon name="construct" slot="start"> </ion-icon>
+        Laboral
+      </ion-button>
+    </ion-buttons>
+  </ion-toolbar>
+  <form [formGroup]="datosPasajes">
+  <div padding>
+    <ion-item>
+      <ion-label>Tipo de registro</ion-label>
+      <ion-select placeholder="Seleccione uno" interface="popover" formControlName="tipoRegistro" (ionChange)="cambio($event)">
+        <ion-select-option value="" disabled>Seleccione Uno</ion-select-option>
+        <ion-select-option *ngFor="let opcion of opciones" value="{{opcion.sk_record_types}}">{{opcion.name}} </ion-select-option>
+      </ion-select>
+    </ion-item>
+  </div>
+  <div padding>
+    <ion-item>
+      <ion-label>Estados</ion-label>
+      <ion-select interface="popover" formControlName="estado"  (ionChange)="cambioEstados($event)">
+        <ion-select-option *ngFor="let opcion of opciones_" value="{{opcion. value_}}">{{opcion.opcion_}}
+        </ion-select-option>
+      </ion-select>
+    </ion-item>
+  </div>
+</form>
+</ion-content>
+
+

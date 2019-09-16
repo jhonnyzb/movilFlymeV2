@@ -1,0 +1,36 @@
+<ion-header>
+  <ion-toolbar color="footer" text-center>
+    <ion-buttons slot="start">
+      <ion-back-button text="Volver" defaultHref="/"></ion-back-button>
+    </ion-buttons>
+    <ion-title>Calendario</ion-title>
+    <ion-buttons slot="end">
+      <ion-button (click)="presentPopoverTuCuenta($event)">
+        <ion-icon name="menu"></ion-icon>
+      </ion-button>
+    </ion-buttons>
+  </ion-toolbar>
+</ion-header>
+
+<ion-toolbar>
+  <ion-segment (ionChange)="segmentChanged($event)" mode="md" color="footer" value="2019">
+    <ion-segment-button value="2019">
+      <ion-icon name="calendar"></ion-icon>
+      <ion-label>2019</ion-label>
+    </ion-segment-button>
+    <ion-segment-button value="2020">
+      <ion-icon name="calendar"></ion-icon>
+      <ion-label>2020</ion-label>
+    </ion-segment-button>
+  </ion-segment>
+</ion-toolbar>
+<ion-content padding>
+  <div *ngIf="c2019" class="animated fadeInDown">
+    <ion-img src="../../assets/img/calendario2019.png">
+    </ion-img>
+  </div>
+  <div *ngIf="c2020" class="animated fadeInDown">
+    <ion-img src="../../assets/img/calendario2020.jpg">
+    </ion-img>
+  </div>
+</ion-content>

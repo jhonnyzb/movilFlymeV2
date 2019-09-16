@@ -1,0 +1,37 @@
+<ion-header noborder>
+    <ion-toolbar noborder color="footer" text-center>
+      <ion-buttons slot="start">
+        <ion-back-button defaultHref="/"></ion-back-button>
+      </ion-buttons>
+      <ion-title>Tu cuenta</ion-title>
+      <ion-buttons slot="end">
+        <ion-button (click)="presentPopoverTuCuenta($event)">
+          <ion-icon name="menu"></ion-icon>
+        </ion-button>
+      </ion-buttons>
+    </ion-toolbar>
+  </ion-header>
+
+<ion-content color="footer">
+    <ion-avatar class="img-register">
+        <img src="../../assets/icon/user.svg">
+      </ion-avatar>
+</ion-content>
+
+<ion-content >
+    <ion-list margin-top>
+        <ion-item detail> 
+          <ion-label>Cambiar Clave</ion-label>
+        </ion-item>
+        <ion-item detail margin-top>
+          <ion-label>Datos personales</ion-label>
+        </ion-item>
+      </ion-list>
+</ion-content>
+
+
+<ion-footer>
+    <ion-toolbar color="footer" text-center >
+        
+    </ion-toolbar>
+  </ion-footer>

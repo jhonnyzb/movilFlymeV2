@@ -1,0 +1,110 @@
+<ion-header>
+  <ion-toolbar color="footer" text-center>
+    <ion-buttons slot="start">
+      <ion-back-button defaultHref="/"></ion-back-button>
+    </ion-buttons>
+    <ion-title>Datos pasajeros</ion-title>
+    <ion-buttons slot="end">
+      <ion-button (click)="presentPopoverTuCuenta($event)">
+        <ion-icon name="menu"></ion-icon>
+      </ion-button>
+    </ion-buttons>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content padding>
+
+  <ion-row>
+
+    <ion-col size="12">
+      <ion-item>
+        <ion-icon name="document" slot="start"></ion-icon>
+        <ion-label color="primary">T.Documento</ion-label>
+        <ion-select interface="popover" (ionChange)="cambioTipoDocumento($event)">
+          <ion-select-option value="" disabled>Seleccione</ion-select-option>
+          <ion-select-option value="3223050b-739a-d6cf-df14-5582fd06ed83">Cedula ciudadania</ion-select-option>
+          <ion-select-option value="32251ecd-0502-1b9e-26ed-5582fd09b2bd">C extranjeria</ion-select-option>
+          <ion-select-option value="323c48c0-d537-f3c6-ae1f-5582fdcd2430">Tarjeta Identidad</ion-select-option>
+          <ion-select-option value="3233d658-e1c2-4a72-ebef-5582fd66bf76">Rut</ion-select-option>
+          <ion-select-option value="322734a2-6dc3-4cb4-5799-5582fd7b0ef0">Nit</ion-select-option>
+          <ion-select-option value="32d3ad90-f153-b8c6-7f9e-5d096d54baeb">Pep</ion-select-option>
+          <ion-select-option value="322d8b21-1c4e-7da1-1a5a-5582fd90a153">Pasaporte</ion-select-option>
+        </ion-select>
+      </ion-item>
+    </ion-col>
+  </ion-row>
+
+
+  <ion-row>
+    <ion-col size="12">
+      <ion-item>
+        <ion-icon name="browsers" slot="start"></ion-icon>
+        <ion-label color="primary" class="ion-label_" position="floating">Documento</ion-label>
+        <ion-input clearInput type="number" name="numeroDocumento" [(ngModel)]="numeroDocumento" ></ion-input>
+      </ion-item>
+    </ion-col>
+    <ion-col size="12">
+      <ion-item>
+        <ion-icon name="happy" slot="start"></ion-icon>
+        <ion-label color="primary" class="ion-label_" position="floating">Nombres</ion-label>
+        <ion-input clearInput name="nombres" [(ngModel)]="nombres"></ion-input>
+      </ion-item>
+    </ion-col>
+    <ion-col size="12">
+        <ion-item>
+          <ion-icon name="happy" slot="start"></ion-icon>
+          <ion-label   color="primary" class="ion-label_" position="floating">Apellidos</ion-label>
+          <ion-input clearInput name="apellidos"[(ngModel)]="apellidos"></ion-input>
+        </ion-item>
+      </ion-col>
+    
+  </ion-row>
+
+
+  <ion-row>
+      <ion-col *ngIf="Pasaporte" size="12">
+          <ion-item>
+            <ion-icon name="card" slot="start"></ion-icon>
+            <ion-label color="primary" class="ion-label_" position="floating">Pasaporte</ion-label>
+            <ion-input clearInput name="pasaporte" [(ngModel)]="pasaporte"></ion-input>
+          </ion-item>
+        </ion-col>
+        <ion-col *ngIf="Pasaporte" size="12">
+            <ion-item >
+              <ion-icon  name="calendar" slot="start"></ion-icon>
+              <ion-label color="primary" class="ion-label_" position="floating">Vencimiento Pasaporte</ion-label>
+              <ion-datetime [pickerOptions]="opcionesFechapasaporte" min="2019-01-01" max="2030-09-15" [ngModel]="fechaVencimiento">
+              </ion-datetime>
+            </ion-item>
+          </ion-col>
+    <ion-col size="12">
+      <ion-item>
+        <ion-icon name="calendar" slot="start"></ion-icon>
+        <ion-label color="primary" class="ion-label_" position="floating">F-nacimiento</ion-label>
+        <ion-datetime [pickerOptions]="opcionesFechaNacimiento" min="1930-01-01" max="2019-12-31" [ngModel]="fecha_nacimiento">
+        </ion-datetime>
+      </ion-item>
+    </ion-col>
+  </ion-row>
+
+  <ion-row>
+    <ion-col size="6">
+      <ion-button expand="full" (click)="guardarPasajero()">
+        <ion-icon name="person-add"></ion-icon>
+      </ion-button>
+    </ion-col>
+    <ion-col size="6">
+        <ion-button expand="full" (click)="retornarPasajero()">
+          finalizar
+        </ion-button>
+      </ion-col>
+  </ion-row>
+
+  <ion-row>
+    <div  class="div-1" *ngFor="let pasajero of pasajeros; let k=index">
+      <div class="div-2">{{pasajero.nombres}}</div>
+      <div class="div-2" ><ion-icon color="danger" name="trash" (click)="borrarPasajero(k)" ></ion-icon></div>
+  </div>
+  </ion-row>
+
+</ion-content>

@@ -1,0 +1,192 @@
+<ion-header>
+  <ion-toolbar color="footer" text-center>
+    <ion-buttons slot="start">
+      <ion-back-button defaultHref="/"></ion-back-button>
+    </ion-buttons>
+    <ion-title>Pasaje Aereo Laboral</ion-title>
+    <ion-buttons slot="end">
+      <ion-button (click)="presentPopoverTuCuenta($event)">
+        <ion-icon name="menu"></ion-icon>
+      </ion-button>
+    </ion-buttons>
+  </ion-toolbar>
+</ion-header>
+
+
+<ion-content padding>
+  <ion-item text-center>
+    <ion-label color="primary">Datos Basicos solicitante</ion-label>
+  </ion-item>
+  <ion-row>
+    <ion-col size="4">
+      <ion-label class="ion-label_">Fecha solicitud</ion-label>
+      <div class="div1 text-center">{{fecha | date:'yyyy-MM-dd'}}</div>
+    </ion-col>
+    <ion-col size="4">
+      <ion-label class="ion-label_">Estado</ion-label>
+      <div class="div1 text-center">Solicitados</div>
+    </ion-col>
+    <ion-col size="4">
+      <ion-label class="ion-label_">Solicita</ion-label>
+      <div class="div1 text-center">{{nombre}}</div>
+    </ion-col>
+  </ion-row>
+  <ion-row>
+    <ion-col size="4">
+      <ion-label class="ion-label_">Cedula</ion-label>
+      <div class="div1 text-center">{{cedula}}</div>
+    </ion-col>
+    <ion-col size="4">
+      <ion-label class="ion-label_">Centro de costo</ion-label>
+      <div class="div1 text-center">{{centroDeCosto}}</div>
+    </ion-col>
+    <ion-col size="4">
+      <ion-label class="ion-label_">SubCen. Costo</ion-label>
+      <div class="div1 text-center">{{subCentroCosto}}</div>
+    </ion-col>
+  </ion-row>
+  <ion-item text-center>
+    <ion-label color="primary">Detalles solicitud</ion-label>
+  </ion-item>
+
+  <ion-row>
+  <ion-col size="6">
+    <ion-label class="ion-label_">Nac/Int </ion-label>
+    <ion-select placeholder="Seleccione uno" interface="popover" (ionChange)="cambioTipo($event)">
+      <ion-select-option value="nacional" >Nacional</ion-select-option>
+      <ion-select-option value="internacional" >Internacional</ion-select-option>
+    </ion-select>
+  </ion-col>
+  <ion-col size="6">
+      <ion-item>
+        <ion-label class="ion-label_" position="floating"># viajero frecuente</ion-label>
+        <ion-input clearInput type="number"  name="numeroViajeroFrecuente" [(ngModel)]="numeroViajeroFrecuente" ></ion-input>
+      </ion-item>
+    </ion-col>
+</ion-row>
+  <ion-row>
+    <ion-col size="6">
+      <ion-label class="ion-label_">Motivo </ion-label>
+      <ion-select placeholder="Seleccione uno" interface="popover" (ionChange)="cambioMotivo($event)">
+        <ion-select-option value="adquisicion_elementos">A. de elementos</ion-select-option>
+        <ion-select-option value="adquisicion_servicios">A. de servicios</ion-select-option>
+        <ion-select-option value="aspectos_admin">A. administrativos</ion-select-option>
+        <ion-select-option value="aspectos_financieros">A. financieros</ion-select-option>
+        <ion-select-option value="aspectos_legales">A. legales</ion-select-option>
+        <ion-select-option value="bienestar">Bienestar</ion-select-option>
+        <ion-select-option value="capacitacion">Capacitación</ion-select-option>
+        <ion-select-option value="cargo_cliente">Cargo Cliente</ion-select-option>
+        <ion-select-option value="convocatoria_vicepresidencia">Conv.vice</ion-select-option>
+        <ion-select-option value="procesos">Procesos</ion-select-option>
+        <ion-select-option value="procesos_laborales">Pro. lab.</ion-select-option>
+        <ion-select-option value="prospeccion_clientes">Prospección Clie.</ion-select-option>
+        <ion-select-option value="reunion_administrativo">Reu. Admon</ion-select-option>
+        <ion-select-option value="reunion_cliente">Reu. Cliente</ion-select-option>
+        <ion-select-option value="reunion_operaciones">Reu. Operaciones</ion-select-option>
+        <ion-select-option value="traslado_ciudad">Tras. Ciudad</ion-select-option>
+        <ion-select-option value="salud_ocupacional">S. Ocupacional</ion-select-option>
+        <ion-select-option value="tecnologia">Tecnologia</ion-select-option>
+
+      </ion-select>
+    </ion-col>
+    <ion-col size="6">
+      <ion-label class="ion-label_">Solicita Anticipo</ion-label>
+      <ion-select placeholder="Seleccione uno" interface="popover" (ionChange)="cambioSolicitarAnticipo($event)">
+        <ion-select-option value="on">Si</ion-select-option>
+        <ion-select-option value="off">No</ion-select-option>
+      </ion-select>
+    </ion-col>
+   
+  </ion-row>
+
+  <ion-row>
+    <ion-col size="12">
+      <ion-item>
+        <ion-label class="ion-label_">Descripción:</ion-label>
+        <ion-textarea rows="1" cols="10" name="descripcion" [(ngModel)]="descripcion" ></ion-textarea>
+      </ion-item>
+    </ion-col>
+  </ion-row>
+
+  <ion-row *ngIf="anticipo">
+    <ion-col  *ngIf="anticipo" size="6">
+      <ion-item>
+        <ion-label class="ion-label_" position="floating">Valor Anticipo</ion-label>
+        <ion-input clearInput type="number" name="valorAnticipo" [(ngModel)]="valorAnticipo" ></ion-input>
+      </ion-item>
+    </ion-col>
+    <ion-col  *ngIf="anticipo" size="6">
+      <ion-item>
+        <ion-label class="ion-label_" position="floating">Valor en letras</ion-label>
+        <ion-input clearInput name="valorAnticipoLetras" [(ngModel)]="valorAnticipoLetras" ></ion-input>
+      </ion-item>
+    </ion-col>
+  </ion-row>
+
+  <ion-row>
+    <ion-col  *ngIf="anticipo" size="6">
+      <ion-label class="ion-label_">Desembolso</ion-label>
+      <ion-select placeholder="Seleccione uno" interface="popover" (ionChange)="cambioDesembolso($event)">
+        <ion-select-option value="abono_en_cuenta">Abono en cuenta</ion-select-option>
+        <ion-select-option value="efectivo">Efectivo</ion-select-option>
+
+      </ion-select>
+    </ion-col>
+    <ion-col  *ngIf="anticipo" size="6">
+      <ion-item>
+        <ion-label class="ion-label_" position="floating">Fecha Desembolso</ion-label>
+        <ion-datetime  [pickerOptions]="opcionesFechaDesembolso"  
+                        [ngModel]="fecha_actual"
+                        min="2019-09-13" max="2030-12-09"
+                        monthShortNames="ene, feb, mar, abr, may, jun, jul, ago, sep, oct, nov, dic">
+        </ion-datetime>
+      </ion-item>
+    </ion-col>
+  </ion-row>
+
+
+  <!-- <ion-row>
+    <ion-col size="6">
+      <ion-item>
+        <ion-label class="ion-label_" position="floating">Fecha Nacimiento</ion-label>
+        <ion-datetime   [pickerOptions]="opcionesFechaNacimiento"
+                        [ngModel]="fechaNacimientoMostrar"
+                        min="1950-08-29" max="2030-12-09"
+                        monthShortNames="ene, feb, mar, abr, may, jun, jul, ago, sep, oct, nov, dic">
+        </ion-datetime>
+      </ion-item>
+    </ion-col>
+    
+  </ion-row> -->
+  <ion-item text-center>
+    <ion-label color="primary">Detalles Trayecto</ion-label>
+  </ion-item>
+  <ion-row padding>
+    <ion-col  size="4" text-center>
+      <ion-button color="footer" (click)="PopFormIdaVuelta()">Ida y vuelta</ion-button>
+    </ion-col>
+    <ion-col size="4" text-center>
+      <ion-button color="footer" (click)="PopFormIda()" >Solo ida</ion-button>
+    </ion-col>
+    <ion-col size="4" text-center>
+      <ion-button color="footer" (click)="PopFormMultitrayecto()" >Multitrayecto</ion-button>
+    </ion-col>
+</ion-row>
+
+
+
+</ion-content>
+
+
+<ion-footer>
+  <ion-toolbar color="footer" text-center>
+    <ion-button color="footer" margin-end (click)="enviarPasajeLaboral()">
+      <ion-icon name="add-circle"></ion-icon>
+      <ion-label>Enviar solicitud</ion-label>
+    </ion-button>
+    <ion-button color="footer" margin-start routerLink="/calendario">
+      <ion-icon name="calendar"></ion-icon>
+      <ion-label>Calendario</ion-label>
+    </ion-button>
+  </ion-toolbar>
+</ion-footer>

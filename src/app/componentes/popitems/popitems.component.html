@@ -1,0 +1,13 @@
+<ion-header>
+    <ion-toolbar text-center>
+      <ion-title>Trayectos</ion-title>
+    </ion-toolbar>
+  </ion-header>
+
+<ion-content>
+    <ion-list>
+      <ion-item *ngFor="let dato of getitems" detail (click)="clickItem(dato.descripcion)"> 
+        <ion-label>Item:  {{dato.descripcion}}</ion-label> 
+      </ion-item>
+    </ion-list>
+  </ion-content>

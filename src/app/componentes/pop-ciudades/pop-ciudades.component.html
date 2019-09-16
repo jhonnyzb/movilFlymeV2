@@ -1,0 +1,16 @@
+<ion-header >
+  <ion-toolbar color="footer" text-center>
+    <ion-title>Ciudades</ion-title>
+  </ion-toolbar>
+  <ion-searchbar placeholder="Buscar Ciudad" debounce="500" showCancelButton="focus" (ionChange)="buscar($event)"></ion-searchbar>
+</ion-header>
+
+<ion-content>
+  <ion-item   *ngFor="let ciudad of ciudades; let k = index" detail (click)="clickCiudad(ciudad)">
+     {{ciudad.ciudad}}
+  </ion-item>
+</ion-content>
+
+
+
+

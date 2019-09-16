@@ -1,0 +1,33 @@
+<ion-header no-border>
+  <ion-toolbar color="footer" text-center>
+    <ion-title margin-top>
+      <ion-img class="img-logo" src="../../assets/img/flyme-logo.svg"></ion-img>
+      <!-- <img class="img-logo" src="../../assets/img/flyme-logo.svg" > -->
+      <!-- <ion-label>
+        <ion-icon name="airplane"></ion-icon>FLYME
+      </ion-label> -->
+    </ion-title>
+  </ion-toolbar>
+</ion-header>
+<ion-content padding color="footer">
+    <ion-avatar *ngIf="loginCargue" class="img-register animated infinite pulse ">
+        <img src="../../assets/icon/loadin.gif">
+      </ion-avatar><br>
+    <ion-avatar *ngIf="loginActual" class="img-register animated infinite pulse ">
+        <img src="../../assets/icon/user.svg">
+      </ion-avatar><br>
+      <form  (ngSubmit)="LoginForm()" class="animated bounceIn" >
+      <ion-item color="footer" margin-top >
+          <ion-input placeholder="Correo" type="email" clearInput="true" [(ngModel)]="Usuario.email" name="email" ></ion-input>
+          <ion-icon name="mail" slot="start"></ion-icon>
+      </ion-item>
+      <ion-item color="footer" >
+          <ion-input placeholder="Password" type="password" clearInput="true" [(ngModel)]="Usuario.password" name="password" ></ion-input>
+          <ion-icon name="key" slot="start"></ion-icon>
+      </ion-item><br><br><br>
+      <div>
+          <ion-button  type="submit" mode="ios" expand="block" color="botonlogin">Entrar</ion-button>
+      </div>
+     
+    </form>
+</ion-content>
