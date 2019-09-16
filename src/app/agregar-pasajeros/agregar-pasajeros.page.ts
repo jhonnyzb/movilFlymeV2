@@ -24,9 +24,9 @@ export class AgregarPasajerosPage implements OnInit {
   opcionesFechaNacimiento: any;
   opcionesFechapasaporte: any;
   fechaVencimiento: string = "";
-
   pasajeros: any[] = [];
   k: any;
+  formRetornoDatos: any = '';
 
   constructor(public popoverController: PopoverController, private route: ActivatedRoute, public router: Router , private servicio: ServicesAllService) {
 
@@ -38,7 +38,22 @@ export class AgregarPasajerosPage implements OnInit {
     this.route.queryParams.subscribe(respuesta => {
       if (respuesta.pasaporte == 1) {
         this.Pasaporte = true;
+        this.formRetornoDatos = 'ida'
       }
+      if (respuesta.pasaporte == 2) {
+        this.Pasaporte = false;
+        this.formRetornoDatos = 'ida'
+      }
+      if (respuesta.pasaporte == 3) {
+        this.Pasaporte = true;
+        this.formRetornoDatos = 'idaYvuelta'
+      }
+      if (respuesta.pasaporte == 4) {
+        this.Pasaporte = false;
+        this.formRetornoDatos = 'idaYvuelta'
+      }
+      
+
     });
 
 
@@ -138,9 +153,19 @@ export class AgregarPasajerosPage implements OnInit {
   }
 
   retornarPasajero(){
-   this.servicio.GuardarPasajero(this.pasajeros)
+
+   if (this.formRetornoDatos =='ida') {
+    this.servicio.GuardarPasajero(this.pasajeros)
     this.router.navigate(['/form-ticket-personal/personal-ida'])
+   }
+   if (this.formRetornoDatos =='idaYvuelta') {
+    this.servicio.GuardarPasajeroIdaVuelta(this.pasajeros)
+    this.router.navigate(['/form-ticket-personal/personal-ida-vuelta'])
+   }
+    
   }
+
+
 
   async presentPopoverTuCuenta(evento) {
     const popover = await this.popoverController.create({

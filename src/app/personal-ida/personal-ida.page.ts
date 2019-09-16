@@ -1,5 +1,5 @@
 import { Component, OnInit, OnDestroy } from '@angular/core';
-import { PopoverController, AlertController } from '@ionic/angular';
+import { PopoverController, AlertController, LoadingController } from '@ionic/angular';
 import { Storage } from '@ionic/storage';
 
 import { NacionalEInternacionalComponent } from '../componentes/nacional-einternacional/nacional-einternacional.component';
@@ -38,6 +38,17 @@ export class PersonalIdaPage implements OnInit, OnDestroy {
   textBotonCiudadO = 'Volar desde';
   ciudadOrigen: any;
   resumen: any[] = [];
+  ciudadDestino: any;
+  textBotonCiudadR = 'Volando a';
+  colorCiudadDestino: string = '';
+  datosResumen = {
+    tipoTrayecto: '',
+    fechaIda:'',
+    horaIda: '',
+    tipoVuelo:'',
+    ciudadOrigen:'',
+    ciudadDestino:''
+  };
 
 
   constructor(public popoverController: PopoverController, private activatedRoute: ActivatedRoute, private storage: Storage, public router: Router, private servicio: ServicesAllService, public alert: AlertController) {
@@ -54,12 +65,13 @@ export class PersonalIdaPage implements OnInit, OnDestroy {
         let total = this.pasajeros.length;
         this.totalPasajeros = 'Total de pasajeros: ' + total
         this.colorPasajeros = 'tertiary'
-        this.resumen.push({ item6: this.pasajeros })
+        this.resumen.push({ pasajeros: this.pasajeros })
         this.storage.set('resumen', this.resumen)
       }
     });
-    this.resumen.push({ item2: this.trayectoVuelo })
-    this.storage.set('resumen', this.resumen)
+    this.datosResumen.tipoTrayecto = this.trayectoVuelo
+    this.storage.set('datosResumen', this.datosResumen)
+   
 
     //fecha ida
     this.opcionesFechaIda = {
@@ -80,7 +92,9 @@ export class PersonalIdaPage implements OnInit, OnDestroy {
           }
           this.fechaida = event.year.value + '-' + this.mesparcial + '-' + this.diaparcial;
           this.colorFechaIda = 'tertiary'
-          this.resumen.push({ item3: this.fechaida })
+          this.datosResumen.fechaIda = this.fechaida;
+          this.storage.set('datosResumen', this.datosResumen)
+          this.resumen.push({ fechaIda: this.fechaida })
           this.storage.set('resumen', this.resumen)
 
         }
@@ -106,7 +120,8 @@ export class PersonalIdaPage implements OnInit, OnDestroy {
           }
           this.horaIda = this.horaparcial + ':' + event.minute.text + ' ' + event.ampm.text;
           this.colorHoraIda = 'tertiary'
-          this.resumen.push({ item4: this.horaIda })
+          this.datosResumen.horaIda = this.horaIda;
+          this.resumen.push({ horaIda: this.horaIda })
           this.storage.set('resumen', this.resumen)
 
 
@@ -134,23 +149,37 @@ export class PersonalIdaPage implements OnInit, OnDestroy {
     await popover.present();
 
     const { data } = await popover.onWillDismiss();
-    this.tipoVuelo = data;
+    this.tipoVuelo = data.tipoVuelo;
     this.textoTipoVuelo = data.tipoVuelo
     this.colorTipoTrayecto = 'tertiary'
-    this.resumen.push({ item1: this.textoTipoVuelo })
+    this.datosResumen.tipoVuelo = this.tipoVuelo;
+    this.resumen.push({ tipoVuelo: this.textoTipoVuelo })
     this.storage.set('resumen', this.resumen)
 
   }
 
 
-  agregarPasajero() {
+  agregarPasajero(idaOvuelta) {
+    if (idaOvuelta == 1) {
+      if (this.textoTipoVuelo == 'internacional') {
+        this.router.navigate(['/agregar-pasajeros'], { queryParams: { pasaporte: 1 } })
+      }
+      else {
+        this.router.navigate(['/agregar-pasajeros'], { queryParams: { pasaporte: 2 } })
+      }
+    }
+    if (idaOvuelta == 2) {
+      if (this.textoTipoVuelo == 'internacional') {
+        this.router.navigate(['/agregar-pasajeros'], { queryParams: { pasaporte: 3 } })
+      }
+      else {
+        this.router.navigate(['/agregar-pasajeros'], { queryParams: { pasaporte: 4 } })
+      }
+    }
 
-    if (this.textoTipoVuelo == 'internacional') {
-      this.router.navigate(['/agregar-pasajeros'], { queryParams: { pasaporte: 1 } })
-    }
-    else {
-      this.router.navigate(['/agregar-pasajeros'], { queryParams: { pasaporte: 2 } })
-    }
+
+
+
   }
 
 
@@ -166,19 +195,32 @@ export class PersonalIdaPage implements OnInit, OnDestroy {
     this.ciudadOrigen = data.ciudad;
     this.textBotonCiudadO = data.ciudad.ciudad;
     this.colorCiudadOrigen = 'tertiary'
-    this.resumen.push({ item5: this.textBotonCiudadO })
+    this.datosResumen.ciudadOrigen = this.ciudadOrigen;
+    this.resumen.push({ ciudadOrigen: this.textBotonCiudadO })
     this.storage.set('resumen', this.resumen)
 
   }
 
+  async presentPopoverDestino() {
 
+    const popover = await this.popoverController.create({
+      component: PopCiudadesComponent,
+
+      translucent: true
+    });
+    await popover.present();
+    const { data } = await popover.onWillDismiss();
+    this.ciudadDestino = data.ciudad;
+    this.textBotonCiudadR = data.ciudad.ciudad;
+    this.colorCiudadDestino = 'tertiary';
+    this.datosResumen.ciudadDestino = this.ciudadDestino;
+
+    this.resumen.push({ ciudadDestino: this.textBotonCiudadR })
+    this.storage.set('resumen', this.resumen)
+  }
 
 
   sendSolicitud() {
-    let p = {
-      pasajeros: this.pasajeros
-    }
-    console.log(p)
     this.storage.get('datos').then(
       (res: any) => {
         let solicitud = {
@@ -190,7 +232,7 @@ export class PersonalIdaPage implements OnInit, OnDestroy {
           fechaIda: this.fechaida,
           fechaVuelta: this.fechaRegreso,
           ciudadOrigenId: this.ciudadOrigen.ciudad_id,
-          ciudadDestinoId: '',
+          ciudadDestinoId: this.ciudadDestino.ciudad_id,
           horaSalida: this.horaIda,
           horaRegreso: this.horaRegreso,
           solicitanteId: res.solicitanteId,
@@ -199,8 +241,10 @@ export class PersonalIdaPage implements OnInit, OnDestroy {
           mesaId: res.mesaId,
           pasajeros: this.pasajeros
         }
+        console.log(solicitud)
         this.servicio.solicitudPasajepersonal(solicitud).subscribe(
           (res: any) => {
+            console.log(res)
             if (res.codigoRespuesta == 0) {
               let mensaje = 'enviada con exito'
               this.presentAlert(mensaje)
@@ -256,6 +300,8 @@ export class PersonalIdaPage implements OnInit, OnDestroy {
     });
     await alert.present();
   }
+
+
 
 
 

@@ -1,42 +1,69 @@
 <ion-header>
-    <ion-toolbar color="footer">
-        <ion-buttons slot="start">
-          <ion-button (click)="cerrar()">
-            <ion-icon slot="icon-only" name="close"></ion-icon>
-          </ion-button>
-        </ion-buttons>
-        <ion-title>Resumen reserva</ion-title>
-      </ion-toolbar>
+  <ion-toolbar color="footer">
+    <ion-buttons slot="start">
+      <ion-button (click)="cerrar()">
+        <ion-icon slot="icon-only" name="close"></ion-icon>
+      </ion-button>
+    </ion-buttons>
+    <ion-title>Resumen reserva</ion-title>
+  </ion-toolbar>
 </ion-header>
 
 <ion-content padding>
 
-    <ion-item >
-        <ion-icon name="jet" color="footer" slot="start"></ion-icon>
-        <ion-label>
-          <h3 >Tipo trayecto</h3>
-          <p>{{resumen[0].item2}}</p>
-        </ion-label>
-      </ion-item>
-      <ion-item >
-          <ion-icon name="airplane" color="footer" slot="start"></ion-icon>
-          <ion-label>
-            <h3 >Tipo vuelo</h3>
-            <p>{{resumen[1].item1}}</p>
-          </ion-label>
-        </ion-item>
-        <ion-item >
-            <ion-icon name="calendar" color="footer" slot="start"></ion-icon>
-            <ion-label>
-              <h3 >Fecha Ida</h3>
-              <p>{{resumen[2].item3}}</p>
-            </ion-label>
-          </ion-item>
-          <ion-item >
-              <ion-icon name="time" color="footer" slot="start"></ion-icon>
-              <ion-label>
-                <h3 >Hora Ida</h3>
-                <p>{{resumen[3].item4}}</p>
-              </ion-label>
-            </ion-item>
+  <ion-item>
+    <ion-icon name="jet" color="footer" slot="start"></ion-icon>
+    <ion-label>
+      <h3>Tipo trayecto</h3>
+      <p>{{resumen[0].tipoTrayecto}}</p>
+    </ion-label>
+  </ion-item>
+  <ion-item>
+    <ion-icon name="airplane" color="footer" slot="start"></ion-icon>
+    <ion-label >
+      <h3>Tipo vuelo</h3>
+      <p *ngIf="resumen[1]">{{resumen[1].tipoVuelo}}</p>
+    </ion-label>
+  </ion-item>
+  <ion-item>
+    <ion-icon name="globe" color="footer" slot="start"></ion-icon>
+    <ion-label >
+      <h3>Ciudad Origen</h3>
+      <p *ngIf="resumen[2]">{{resumen[2].ciudadOrigen}}</p>
+    </ion-label>
+  </ion-item>
+  <ion-item>
+    <ion-icon name="globe" color="footer" slot="start"></ion-icon>
+    <ion-label>
+      <h3>Ciudad Destino</h3>
+      <p *ngIf="resumen[3]">{{resumen[3].ciudadDestino}}</p>
+    </ion-label>
+  </ion-item>
+  <ion-item>
+    <ion-icon name="calendar" color="footer" slot="start"></ion-icon>
+    <ion-label>
+      <h3>Fecha Ida</h3>
+      <p *ngIf="resumen[4]">{{resumen[4].fechaIda}}</p>
+    </ion-label>
+  </ion-item>
+  <ion-item>
+    <ion-icon name="time" color="footer" slot="start"></ion-icon>
+    <ion-label>
+      <h3>Hora Ida</h3>
+      <p *ngIf="resumen[5]">{{resumen[5].horaIda}}</p>
+    </ion-label>
+  </ion-item>
+
+
+  <!-- <div *ngIf="pasajeros">
+  <ion-item *ngFor="let pasajero of pasajeros; let k = index">
+      <ion-icon name="person" color="footer" slot="start"></ion-icon>
+      <ion-label>
+        <h3>pasajero {{k + 1 }}</h3>
+        <p>{{pasajero.nombres}} {{pasajero.apellidos}}</p>
+      </ion-label>
+    </ion-item>
+  </div> -->
+
+
 </ion-content>

@@ -40,7 +40,6 @@ export class LoginPage implements OnInit, OnDestroy {
           this.router.navigate(['/layout'])
         }
         if(res.codigoRespuesta == 1001){
-          this.router.navigate(['/layout'])
           this.presentAlert();
         } 
         if(res.codigoRespuesta == 1009){
@@ -49,7 +48,6 @@ export class LoginPage implements OnInit, OnDestroy {
         },
       (err)=>{
        this.presentAlertErrorBackend(err)
-       this.router.navigate(['/layout'])
        console.log(err)
     
       }

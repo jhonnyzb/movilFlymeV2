@@ -12,10 +12,14 @@
             <ion-icon name="globe" padding-end></ion-icon>
           <ion-label>{{textoTipoVuelo | titlecase}}</ion-label>
         </ion-item>
-        <ion-item detail (click)="presentPopoverOrigen()" [color]="colorCiudadOrigen">
+        <ion-item detail  (click)="presentPopoverOrigen()" [color]="colorCiudadOrigen">
             <ion-icon name="airplane" padding-end></ion-icon>
           <ion-label>{{textBotonCiudadO}}</ion-label>
         </ion-item>
+        <ion-item detail (click)="presentPopoverDestino()" [color]="colorCiudadDestino">
+            <ion-icon name="airplane" mode="ios" padding-end></ion-icon>
+            <ion-label>{{textBotonCiudadR}}</ion-label>
+          </ion-item>
         <ion-item detail [color]="colorFechaIda">
             <ion-icon name="calendar" padding-end></ion-icon>
           <ion-label>Fecha Ida</ion-label>
@@ -34,7 +38,7 @@
                         [ngModel]="horaIda" >
           </ion-datetime>
         </ion-item>
-        <ion-item detail  [color]="colorPasajeros" (click)="agregarPasajero()">
+        <ion-item detail  [color]="colorPasajeros" (click)="agregarPasajero(1)">
             <ion-icon name="person-add" padding-end></ion-icon>
           <ion-label>{{totalPasajeros}}</ion-label>
         </ion-item>

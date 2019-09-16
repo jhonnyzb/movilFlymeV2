@@ -12,11 +12,13 @@ const routes: Routes = [
   { path: 'form-ticket-personal', loadChildren: './form-ticket-personal/form-ticket-personal.module#FormTicketPersonalPageModule' },
   { path: 'form-ticket-laboral', loadChildren: './form-ticket-laboral/form-ticket-laboral.module#FormTicketLaboralPageModule' },
   { path: 'cuenta', loadChildren: './cuenta/cuenta.module#CuentaPageModule' },
-  { path: 'detalles-pasajes/:idAnticipo', loadChildren: './detalles-pasajes/detalles-pasajes.module#DetallesPasajesPageModule' },
+  { path: 'detalles-pasajes/:idAnticipo/:laboPers', loadChildren: './detalles-pasajes/detalles-pasajes.module#DetallesPasajesPageModule' },
   { path: 'personal-ida-vuelta', loadChildren: './personal-ida-vuelta/personal-ida-vuelta.module#PersonalIdaVueltaPageModule' },
   { path: 'personal-ida', loadChildren: './personal-ida/personal-ida.module#PersonalIdaPageModule' },
   //{ path: 'resumen-reserva', loadChildren: './resumen-reserva/resumen-reserva.module#ResumenReservaPageModule' },
   { path: 'agregar-pasajeros', loadChildren: './agregar-pasajeros/agregar-pasajeros.module#AgregarPasajerosPageModule' },
+  { path: 'laboral-ida-vuelta', loadChildren: './laboral-ida-vuelta/laboral-ida-vuelta.module#LaboralIdaVueltaPageModule' },
+  { path: 'laboral-ida', loadChildren: './laboral-ida/laboral-ida.module#LaboralIdaPageModule' },
 
  
 ];

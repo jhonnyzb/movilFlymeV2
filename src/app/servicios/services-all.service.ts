@@ -12,9 +12,10 @@ export class ServicesAllService {
   details: any;
   Items: any;
   opcion: any;
-  baseUrl: string = 'http://10.133.10.175'
+  baseUrl: string = 'http://10.133.10.223'
   sesioid: any;
   pasajeros: any[] = [];
+  pasajerosIdaVuelta: any[] = [];
   resumen: any[] = [];
   items: any;
 
@@ -56,7 +57,11 @@ export class ServicesAllService {
     return this.http.get(this.baseUrl + '/users/recordType');
   }
 
-  obtenerDetallesPasajes(idAnticipo) {
+  obtenerDetallesPasajesPersonal(idAnticipo) {
+    return this.http.post(this.baseUrl + '/users/detalleSolicitudPersonal', { anticipoId: idAnticipo })
+  }
+
+  obtenerDetallesPasajesLaboral(idAnticipo) {
     return this.http.post(this.baseUrl + '/users/detalleSolicitud', { anticipoId: idAnticipo })
   }
 
@@ -71,6 +76,13 @@ export class ServicesAllService {
     return this.pasajeros;
   }
 
+  GuardarPasajeroIdaVuelta(pasajeros: any) {
+    this.pasajerosIdaVuelta = pasajeros;
 
+  }
+
+  entregarPasajerosIdaVuelta() {
+    return this.pasajerosIdaVuelta;
+  }
   
 }

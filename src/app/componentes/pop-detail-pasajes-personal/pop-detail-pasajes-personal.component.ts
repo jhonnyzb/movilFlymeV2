@@ -18,6 +18,7 @@ export class PopDetailPasajesPersonalComponent implements OnInit {
   opcion1: string = '';
 
   pageActual: number = 1;
+  tipoDetalle: string;
   constructor(public navParams:NavParams, private servicio: ServicesAllService, public popoverController: PopoverController, private storage: Storage, private router: Router) { 
 
     
@@ -34,6 +35,7 @@ export class PopDetailPasajesPersonalComponent implements OnInit {
 
   getDetails(){
     if(this.opcion1 === 'pasaje_aereo'){
+      this.tipoDetalle = 'l';
       this.storage.get('datos').then(
         (res)=>{
           let consultaPasajes = {
@@ -60,7 +62,7 @@ export class PopDetailPasajesPersonalComponent implements OnInit {
 
 
     if(this.opcion1 === 'pasaje_aereo_personal'){
-
+      this.tipoDetalle = 'p'
       this.storage.get('datos').then(
         (res)=>{
           let consultaPasajes = {
@@ -85,7 +87,7 @@ export class PopDetailPasajesPersonalComponent implements OnInit {
     }
 
     if(this.opcion1 === 'anticipo'){
-
+      this.tipoDetalle = 'a'
       this.storage.get('datos').then(
         (res)=>{
           let consultaPasajes = {
@@ -110,7 +112,7 @@ export class PopDetailPasajesPersonalComponent implements OnInit {
     }
 
     if(this.opcion1 === 'reembolso'){
-
+      this.tipoDetalle = 'r'
       this.storage.get('datos').then(
         (res)=>{
           let consultaPasajes = {
@@ -139,7 +141,7 @@ export class PopDetailPasajesPersonalComponent implements OnInit {
 
 
   detallePasaje(anticipoID){
-    this.router.navigate(['/detalles-pasajes',anticipoID])
+    this.router.navigate(['/detalles-pasajes',anticipoID, this.tipoDetalle])
     this.popoverController.dismiss();
   }
 

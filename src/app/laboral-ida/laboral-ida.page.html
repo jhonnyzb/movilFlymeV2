@@ -1,0 +1,21 @@
+
+<ion-content padding>
+    <ion-fab vertical="bottom" horizontal="end" slot="fixed" >
+        <ion-fab-button  routerLink="/calendario">
+          <ion-icon name="calendar"></ion-icon>
+        </ion-fab-button>
+    </ion-fab>
+
+    <ion-list>
+        <ion-item detail (click)="nacionalInternacional($event)" [color]="colorTipoTrayecto">
+            <ion-icon name="globe" padding-end></ion-icon>
+          <ion-label>{{textoTipoVuelo | titlecase}}</ion-label>
+        </ion-item>
+
+        <ion-item detail (click)="nacionalInternacional($event)" [color]="colorTipoTrayecto">
+            <ion-icon name="globe" padding-end></ion-icon>
+          <ion-label># viajero frecuente</ion-label>
+        </ion-item>
+    </ion-list>
+
+</ion-content>

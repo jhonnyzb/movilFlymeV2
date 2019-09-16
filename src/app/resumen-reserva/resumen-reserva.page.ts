@@ -9,16 +9,18 @@ import { ModalController } from '@ionic/angular';
 export class ResumenReservaPage implements OnInit {
 
   @Input() resumen;
+  pasajeros: any[] = [];
 
   constructor(private modalController: ModalController) { }
 
   ngOnInit() {
-  
+    //this.pasajeros = this.resumen[6].pasajeros;
+
   }
 
 
 
-  cerrar(){
+  cerrar() {
     this.modalController.dismiss();
 
   }

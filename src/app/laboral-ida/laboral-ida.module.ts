@@ -5,7 +5,7 @@ import { Routes, RouterModule } from '@angular/router';
 
 import { IonicModule } from '@ionic/angular';
 
-import { PersonalIdaVueltaPage } from './personal-ida-vuelta.page';
+import { LaboralIdaPage } from './laboral-ida.page';
 import { NacionalEInternacionalComponent } from '../componentes/nacional-einternacional/nacional-einternacional.component';
 import { PopCiudadesComponent } from '../componentes/pop-ciudades/pop-ciudades.component';
 import { ComponentesModule } from '../componentes/componentes.module';
@@ -13,7 +13,7 @@ import { ComponentesModule } from '../componentes/componentes.module';
 const routes: Routes = [
   {
     path: '',
-    component: PersonalIdaVueltaPage
+    component: LaboralIdaPage
   }
 ];
 
@@ -29,6 +29,6 @@ const routes: Routes = [
     RouterModule.forChild(routes),
     ComponentesModule
   ],
-  declarations: [PersonalIdaVueltaPage]
+  declarations: [LaboralIdaPage]
 })
-export class PersonalIdaVueltaPageModule {}
+export class LaboralIdaPageModule {}

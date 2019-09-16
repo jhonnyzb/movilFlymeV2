@@ -159,23 +159,23 @@ export class FormTicketPersonalPage implements OnInit {
       }]
     }
 
-    this.obtenerDatosSolicitante();
+    //this.obtenerDatosSolicitante();
   }
 
-  obtenerDatosSolicitante() {
-    this.storage.get('datos').then(
-      (res) => {
-        this.cedula = res.cedula,
-          this.nombre = res.nombre
-        this.centroDeCosto = res.nombreCentroCosto,
-          this.subCentroCosto = res.nombreSubCentroCosto
-      }
-    ).catch(
-      (err) => {
-        console.log('obtener datos local storage', err)
-      }
-    )
-  }
+  // obtenerDatosSolicitante() {
+  //   this.storage.get('datos').then(
+  //     (res) => {
+  //       this.cedula = res.cedula,
+  //         this.nombre = res.nombre
+  //       this.centroDeCosto = res.nombreCentroCosto,
+  //         this.subCentroCosto = res.nombreSubCentroCosto
+  //     }
+  //   ).catch(
+  //     (err) => {
+  //       console.log('obtener datos local storage', err)
+  //     }
+  //   )
+  // }
 
 
   cambioTipo(event) {

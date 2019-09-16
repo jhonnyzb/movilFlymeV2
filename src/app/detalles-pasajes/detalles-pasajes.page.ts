@@ -13,6 +13,7 @@ import { DetalleSolicitanteComponent } from '../componentes/detalle-solicitante/
 export class DetallesPasajesPage implements OnInit {
 
   id: string;
+  laboPers: string = '';
   trayectos: any[] = [];
 
   solicitante = {
@@ -30,6 +31,8 @@ export class DetallesPasajesPage implements OnInit {
   
   constructor(private activatedRoute: ActivatedRoute, public popoverController: PopoverController, private servicio: ServicesAllService) { 
     this.id = this.activatedRoute.snapshot.paramMap.get('idAnticipo');
+    this.laboPers = this.activatedRoute.snapshot.paramMap.get('laboPers');
+
   }
   
 
@@ -42,18 +45,33 @@ export class DetallesPasajesPage implements OnInit {
 
 
   obtenerDetallesPasajes(){
-    this.servicio.obtenerDetallesPasajes(this.id).subscribe(
-      (res:any)=>{
-        console.log(res);
-        this.trayectos = res.trayectos;
-        this.solicitante = res.solicitante;
-       
-         
-      },
-      (erro)=>{
-        console.log('error Solicita Detalles', erro)
-      }
-    )
+    if (this.laboPers == 'l') {
+      console.log('entro laboral')
+      this.servicio.obtenerDetallesPasajesLaboral(this.id).subscribe(
+        (res:any)=>{
+          console.log('respuesta detalles', res);
+          this.trayectos = res.trayectos;
+          this.solicitante = res.solicitante;   
+        },
+        (erro)=>{
+          console.log('error Solicita Detalles', erro)
+        }
+      )
+    }
+    if (this.laboPers == 'p') {
+      console.log('entro personal')
+      this.servicio.obtenerDetallesPasajesPersonal(this.id).subscribe(
+        (res:any)=>{
+          console.log('respuesta detalles', res);
+          this.trayectos = res.trayectos;
+          this.solicitante = res.solicitante;   
+        },
+        (erro)=>{
+          console.log('error Solicita Detalles', erro)
+        }
+      )
+    }
+    
   }
 
   

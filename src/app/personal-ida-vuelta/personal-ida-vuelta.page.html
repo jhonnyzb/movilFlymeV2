@@ -1,45 +1,56 @@
-
-
 <ion-content padding>
-    <ion-fab vertical="top" horizontal="end" slot="fixed" >
-        <ion-fab-button  routerLink="/calendario">
-          <ion-icon name="calendar"></ion-icon>
-        </ion-fab-button>
-    </ion-fab>
+  <ion-fab vertical="top" horizontal="end" slot="fixed">
+    <ion-fab-button routerLink="/calendario">
+      <ion-icon name="calendar"></ion-icon>
+    </ion-fab-button>
+  </ion-fab>
 
- <ion-list>
-        <ion-item detail>
-            <ion-icon name="globe" padding-end></ion-icon>
-          <ion-label>Nac/Int</ion-label>
-        </ion-item>
-        <ion-item detail>
-            <ion-icon name="airplane" padding-end></ion-icon>
-          <ion-label>Volar desde</ion-label>
-        </ion-item>
-        <ion-item detail>
-            <ion-icon name="airplane" mode="ios" padding-end></ion-icon>
-          <ion-label>Volando a</ion-label>
-        </ion-item>
-        <ion-item detail>
-            <ion-icon name="calendar" padding-end></ion-icon>
-          <ion-label>Fecha Ida</ion-label>
-        </ion-item>
-        <ion-item detail>
-            <ion-icon name="calendar" mode="ios" padding-end></ion-icon>
-          <ion-label>Fecha Regreso</ion-label>
-        </ion-item>
-        <ion-item detail>
-            <ion-icon name="time" padding-end></ion-icon>
-          <ion-label>Hora Ida</ion-label>
-        </ion-item>
-        <ion-item detail>
-            <ion-icon name="stopwatch" mode="ios" padding-end></ion-icon>
-          <ion-label>Hora Regreso</ion-label>
-        </ion-item>
-        <ion-item detail>
-            <ion-icon name="person-add" padding-end></ion-icon>
-          <ion-label>Agregar Pasajero</ion-label>
-        </ion-item>
-      </ion-list>
-      <ion-button expand="full">Enviar Reserva</ion-button>
+  <ion-list>
+    <ion-item detail (click)="nacionalInternacional($event)" [color]="colorTipoTrayecto">
+      <ion-icon name="globe" padding-end></ion-icon>
+      <ion-label>{{textoTipoVuelo | titlecase}}</ion-label>
+    </ion-item>
+    <ion-item detail (click)="presentPopoverOrigen()" [color]="colorCiudadOrigen">
+      <ion-icon name="airplane" padding-end></ion-icon>
+      <ion-label>{{textBotonCiudadO}}</ion-label>
+    </ion-item>
+    <ion-item detail (click)="presentPopoverDestino()" [color]="colorCiudadDestino">
+      <ion-icon name="airplane" mode="ios" padding-end></ion-icon>
+      <ion-label>{{textBotonCiudadR}}</ion-label>
+    </ion-item>
+    <ion-item detail [color]="colorFechaIda">
+      <ion-icon name="calendar" padding-end></ion-icon>
+      <ion-label>Fecha Ida</ion-label>
+      <ion-datetime [pickerOptions]="opcionesFechaIda" [min]="fechaActual" max="2050-12-09" [ngModel]="fechaida"
+        monthShortNames="Ene, Feb, Mar, Abr, May, Jun, Jul, Ago, Sep, Oct, Nov, Dic">
+      </ion-datetime>
+    </ion-item>
+
+    <ion-item detail [color]="colorFechaRegreso">
+      <ion-icon name="calendar" mode="ios" padding-end></ion-icon>
+      <ion-label>Fecha Regreso</ion-label>
+      <ion-datetime [pickerOptions]="optionspickersFr" [min]="fechaida" max="2030-12-09" [ngModel]="fecha_actualR"
+        monthShortNames="ene, feb, mar, abr, may, jun, jul, ago, sep, oct, nov, dic">
+      </ion-datetime>
+    </ion-item>
+    <ion-item detail [color]="colorHoraIda">
+        <ion-icon name="time" padding-end></ion-icon>
+      <ion-label>Hora Ida</ion-label>
+      <ion-datetime [pickerOptions]="opcionesHoraIda" 
+                    displayFormat="h:mm A" 
+                    [ngModel]="horaIda" >
+      </ion-datetime>
+    </ion-item>
+    <ion-item detail [color]="colorHoraRegreso">
+        <ion-icon name="stopwatch" mode="ios" padding-end></ion-icon>
+        <ion-label >Hora Regreso</ion-label>
+        <ion-datetime [pickerOptions]="optionspickersHr" displayFormat="h:mm A" [ngModel]="horaLLegadaR">
+        </ion-datetime>
+    </ion-item>
+    <ion-item detail [color]="colorPasajeros" (click)="agregarPasajero(2)">
+      <ion-icon name="person-add" padding-end></ion-icon>
+      <ion-label>{{totalPasajeros}}</ion-label>
+    </ion-item>
+  </ion-list>
+  <ion-button expand="full" (click)="sendSolicitud()">Enviar Reserva</ion-button>
 </ion-content>

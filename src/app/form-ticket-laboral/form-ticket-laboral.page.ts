@@ -132,13 +132,11 @@ this.obtenerDatosSolicitante();
       component: TucuentaComponent,
       event: evento,
       mode:'ios',
-      //componentProps: { idopcion: idvalue },
-      //cssClass: 'popover_class',
-      //backdropDismiss: false,
+     
       translucent: true
     });
     await popover.present();
-    //const { data } = await popover.onDidDismiss();
+  
     const { data } = await popover.onWillDismiss();
 
 
@@ -151,13 +149,13 @@ this.obtenerDatosSolicitante();
     this.trayecto = 'ida_vuelta';
     const popover = await this.popoverController.create({
       component: FormIdaVueltaLaboralComponent,
-      //componentProps: { idopcion: idvalue },
+   
       cssClass: 'popover_class',
-      //backdropDismiss: false,
+   
       translucent: true
     });
     await popover.present();
-    //const { data } = await popover.onDidDismiss();
+ 
     const { data } = await popover.onWillDismiss();
     let trayectoIdaVuelta = {
       ciudadOrigen: data.infoTrayectoIdaVuelta.ciudadOrigen,
@@ -257,7 +255,7 @@ this.obtenerDatosSolicitante();
           mesaId: res.mesaId,  
           trayecto: this.trayectos
         }
-        console.log(solicitudPasajeLaboral);
+        console.log('envio pasaje laborla', solicitudPasajeLaboral);
         this.suscriptionLaboral = this.servicio.solicitudPasajeLaboral(solicitudPasajeLaboral).subscribe(
           (res:any)=>{
             console.log(res)

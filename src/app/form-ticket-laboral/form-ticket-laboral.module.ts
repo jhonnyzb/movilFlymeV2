@@ -15,7 +15,21 @@ import { FormMultitrayectolaboralComponent } from '../componentes/form-multitray
 const routes: Routes = [
   {
     path: '',
-    component: FormTicketLaboralPage
+    component: FormTicketLaboralPage,
+    children: [
+      {
+        path: 'laboral-ida',
+        loadChildren: () => import ('../laboral-ida/laboral-ida.module').then(m => m.LaboralIdaPageModule)
+      },
+      {
+        path: 'laboral-ida-vuelta',
+        loadChildren: () => import ('../laboral-ida-vuelta/laboral-ida-vuelta.module').then(m => m.LaboralIdaVueltaPageModule)
+      },
+      {
+        path: '',
+        redirectTo: 'laboral-ida', pathMatch: 'full'
+      }
+    ]
   }
 ];
 

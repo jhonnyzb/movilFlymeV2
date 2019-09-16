@@ -1,7 +1,7 @@
 <ion-header>
   <ion-toolbar color="footer" text-center>
     <ion-buttons slot="start">
-      <ion-back-button defaultHref="/"></ion-back-button>
+      <ion-back-button defaultHref="/layout"></ion-back-button>
     </ion-buttons>
     <ion-title>Pasaje Aereo Laboral</ion-title>
     <ion-buttons slot="end">
@@ -14,6 +14,23 @@
 
 
 <ion-content padding>
+  <!-- <ion-tabs>
+    <ion-tab-bar slot="top">
+      <ion-tab-button tab="laboral-ida">
+        <ion-icon name="return-right"></ion-icon>
+        <ion-label>Ida</ion-label>
+      </ion-tab-button>
+      <ion-tab-button tab="laboral-ida-vuelta">
+        <ion-icon name="repeat"></ion-icon>
+        <ion-label>Ida y Vuelta</ion-label>
+      </ion-tab-button>
+      <ion-tab-button tab="">
+          <ion-icon name="git-network"></ion-icon>
+          <ion-label>Multitrayecto</ion-label>
+        </ion-tab-button>
+    </ion-tab-bar>
+  </ion-tabs> -->
+
   <ion-item text-center>
     <ion-label color="primary">Datos Basicos solicitante</ion-label>
   </ion-item>
@@ -44,7 +61,7 @@
       <ion-label class="ion-label_">SubCen. Costo</ion-label>
       <div class="div1 text-center">{{subCentroCosto}}</div>
     </ion-col>
-  </ion-row>
+  </ion-row> 
   <ion-item text-center>
     <ion-label color="primary">Detalles solicitud</ion-label>
   </ion-item>
@@ -145,19 +162,7 @@
   </ion-row>
 
 
-  <!-- <ion-row>
-    <ion-col size="6">
-      <ion-item>
-        <ion-label class="ion-label_" position="floating">Fecha Nacimiento</ion-label>
-        <ion-datetime   [pickerOptions]="opcionesFechaNacimiento"
-                        [ngModel]="fechaNacimientoMostrar"
-                        min="1950-08-29" max="2030-12-09"
-                        monthShortNames="ene, feb, mar, abr, may, jun, jul, ago, sep, oct, nov, dic">
-        </ion-datetime>
-      </ion-item>
-    </ion-col>
-    
-  </ion-row> -->
+  
   <ion-item text-center>
     <ion-label color="primary">Detalles Trayecto</ion-label>
   </ion-item>
