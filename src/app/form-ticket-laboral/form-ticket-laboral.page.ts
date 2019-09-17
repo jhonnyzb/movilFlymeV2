@@ -110,9 +110,6 @@ this.opcionesFechaNacimiento = {
     }
   }]
 }
-
-this.obtenerDatosSolicitante();
-
   }
 
 

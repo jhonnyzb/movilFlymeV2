@@ -1,5 +1,5 @@
 import { Component, OnInit, OnDestroy } from '@angular/core';
-import { PopoverController, AlertController, LoadingController } from '@ionic/angular';
+import { PopoverController, AlertController, LoadingController, ModalController } from '@ionic/angular';
 import { Storage } from '@ionic/storage';
 
 import { NacionalEInternacionalComponent } from '../componentes/nacional-einternacional/nacional-einternacional.component';
@@ -7,6 +7,7 @@ import * as moment from 'moment';
 import { Router, ActivatedRoute } from '@angular/router';
 import { ServicesAllService } from '../servicios/services-all.service';
 import { PopCiudadesComponent } from '../componentes/pop-ciudades/pop-ciudades.component';
+import { ResumenReservaPage } from '../resumen-reserva/resumen-reserva.page';
 
 @Component({
   selector: 'app-personal-ida',
@@ -37,7 +38,6 @@ export class PersonalIdaPage implements OnInit, OnDestroy {
   horaRegreso: string = ''
   textBotonCiudadO = 'Volar desde';
   ciudadOrigen: any;
-  resumen: any[] = [];
   ciudadDestino: any;
   textBotonCiudadR = 'Volando a';
   colorCiudadDestino: string = '';
@@ -51,7 +51,7 @@ export class PersonalIdaPage implements OnInit, OnDestroy {
   };
 
 
-  constructor(public popoverController: PopoverController, private activatedRoute: ActivatedRoute, private storage: Storage, public router: Router, private servicio: ServicesAllService, public alert: AlertController) {
+  constructor(public popoverController: PopoverController, private activatedRoute: ActivatedRoute, private storage: Storage, public router: Router, private servicio: ServicesAllService, public alert: AlertController, private modalController: ModalController) {
 
   }
 
@@ -65,12 +65,10 @@ export class PersonalIdaPage implements OnInit, OnDestroy {
         let total = this.pasajeros.length;
         this.totalPasajeros = 'Total de pasajeros: ' + total
         this.colorPasajeros = 'tertiary'
-        this.resumen.push({ pasajeros: this.pasajeros })
-        this.storage.set('resumen', this.resumen)
       }
     });
     this.datosResumen.tipoTrayecto = this.trayectoVuelo
-    this.storage.set('datosResumen', this.datosResumen)
+   
    
 
     //fecha ida
@@ -93,10 +91,6 @@ export class PersonalIdaPage implements OnInit, OnDestroy {
           this.fechaida = event.year.value + '-' + this.mesparcial + '-' + this.diaparcial;
           this.colorFechaIda = 'tertiary'
           this.datosResumen.fechaIda = this.fechaida;
-          this.storage.set('datosResumen', this.datosResumen)
-          this.resumen.push({ fechaIda: this.fechaida })
-          this.storage.set('resumen', this.resumen)
-
         }
       }, {
         text: 'Cancelar',
@@ -121,10 +115,6 @@ export class PersonalIdaPage implements OnInit, OnDestroy {
           this.horaIda = this.horaparcial + ':' + event.minute.text + ' ' + event.ampm.text;
           this.colorHoraIda = 'tertiary'
           this.datosResumen.horaIda = this.horaIda;
-          this.resumen.push({ horaIda: this.horaIda })
-          this.storage.set('resumen', this.resumen)
-
-
         }
       }, {
         text: 'Cancelar',
@@ -153,9 +143,6 @@ export class PersonalIdaPage implements OnInit, OnDestroy {
     this.textoTipoVuelo = data.tipoVuelo
     this.colorTipoTrayecto = 'tertiary'
     this.datosResumen.tipoVuelo = this.tipoVuelo;
-    this.resumen.push({ tipoVuelo: this.textoTipoVuelo })
-    this.storage.set('resumen', this.resumen)
-
   }
 
 
@@ -196,9 +183,7 @@ export class PersonalIdaPage implements OnInit, OnDestroy {
     this.textBotonCiudadO = data.ciudad.ciudad;
     this.colorCiudadOrigen = 'tertiary'
     this.datosResumen.ciudadOrigen = this.ciudadOrigen;
-    this.resumen.push({ ciudadOrigen: this.textBotonCiudadO })
-    this.storage.set('resumen', this.resumen)
-
+  
   }
 
   async presentPopoverDestino() {
@@ -214,9 +199,6 @@ export class PersonalIdaPage implements OnInit, OnDestroy {
     this.textBotonCiudadR = data.ciudad.ciudad;
     this.colorCiudadDestino = 'tertiary';
     this.datosResumen.ciudadDestino = this.ciudadDestino;
-
-    this.resumen.push({ ciudadDestino: this.textBotonCiudadR })
-    this.storage.set('resumen', this.resumen)
   }
 
 
@@ -275,12 +257,6 @@ export class PersonalIdaPage implements OnInit, OnDestroy {
   }
 
 
-
-
-
-
-
-
   async presentAlert(mensaje) {
     const alert = await this.alert.create({
       subHeader: 'Solicitud',
@@ -303,6 +279,15 @@ export class PersonalIdaPage implements OnInit, OnDestroy {
 
 
 
+  async resumenReserva() {
+    const modal = await this.modalController.create({
+      component: ResumenReservaPage,
+      componentProps: {
+        resumen: this.datosResumen
+      }
+    });
+    return await modal.present();
+  }
 
 
 

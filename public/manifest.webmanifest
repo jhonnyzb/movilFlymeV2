@@ -43,7 +43,7 @@
       "type": "image/png"
     },
     {
-      "src": "assets/icons/icon-72x72.png",
+      "src": "assets/icons/icon-512x512.png",
       "sizes": "512x512",
       "type": "image/png"
     }

@@ -9,6 +9,8 @@ import { PersonalIdaVueltaPage } from './personal-ida-vuelta.page';
 import { NacionalEInternacionalComponent } from '../componentes/nacional-einternacional/nacional-einternacional.component';
 import { PopCiudadesComponent } from '../componentes/pop-ciudades/pop-ciudades.component';
 import { ComponentesModule } from '../componentes/componentes.module';
+import { ResumenReservaPage } from '../resumen-reserva/resumen-reserva.page';
+import { ResumenReservaPageModule } from '../resumen-reserva/resumen-reserva.module';
 
 const routes: Routes = [
   {
@@ -20,14 +22,16 @@ const routes: Routes = [
 @NgModule({
   entryComponents:[
     NacionalEInternacionalComponent,
-    PopCiudadesComponent
+    PopCiudadesComponent,
+    ResumenReservaPage
   ],
   imports: [
     CommonModule,
     FormsModule,
     IonicModule,
     RouterModule.forChild(routes),
-    ComponentesModule
+    ComponentesModule,
+    ResumenReservaPageModule
   ],
   declarations: [PersonalIdaVueltaPage]
 })

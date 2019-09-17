@@ -1,21 +1,42 @@
-
 <ion-content padding>
-    <ion-fab vertical="bottom" horizontal="end" slot="fixed" >
-        <ion-fab-button  routerLink="/calendario">
-          <ion-icon name="calendar"></ion-icon>
-        </ion-fab-button>
-    </ion-fab>
+  <ion-fab vertical="bottom" horizontal="end" slot="fixed">
+    <ion-fab-button routerLink="/calendario">
+      <ion-icon name="calendar"></ion-icon>
+    </ion-fab-button>
+  </ion-fab>
 
-    <ion-list>
-        <ion-item detail (click)="nacionalInternacional($event)" [color]="colorTipoTrayecto">
-            <ion-icon name="globe" padding-end></ion-icon>
-          <ion-label>{{textoTipoVuelo | titlecase}}</ion-label>
-        </ion-item>
+  <ion-list>
+    <ion-item detail (click)="nacionalInternacional($event)" [color]="colorTipoTrayecto">
+      <ion-icon name="globe" padding-end></ion-icon>
+      <ion-label>{{textoTipoVuelo | titlecase}}</ion-label>
+    </ion-item>
 
-        <ion-item detail (click)="nacionalInternacional($event)" [color]="colorTipoTrayecto">
-            <ion-icon name="globe" padding-end></ion-icon>
-          <ion-label># viajero frecuente</ion-label>
-        </ion-item>
-    </ion-list>
+    <ion-item detail (click)="viajeroFrecuente()" [color]="colorNumeroViajerpFrecuente">
+      <ion-icon name="calculator" padding-end></ion-icon>
+      <ion-label>N° viajero Frecuente {{numeroViajeroFrecuente}}</ion-label>
+    </ion-item>
+    <ion-item detail (click)="motivos()" [color]="colorMotivo">
+      <ion-icon name="checkbox" padding-end></ion-icon>
+      <ion-label>Motivo {{motivo}}</ion-label>
+    </ion-item>
+    <ion-item detail (click)="solicitaAnticipo()" [color]="colorSolicitaAnticipo">
+      <ion-icon name="cash" padding-end></ion-icon>
+      <ion-label>Solicita Anticipo {{solicitAnticipo}}</ion-label>
+    </ion-item>
+    <ion-item detail (click)="descripcion()" [color]="colorDescripcion">
+      <ion-icon name="brush" padding-end></ion-icon>
+      <ion-label>{{descripcion_}}</ion-label>
+    </ion-item>
+  </ion-list>
 
 </ion-content>
+
+
+
+<ion-footer>
+  <ion-toolbar color="footer" text-center>
+    <ion-button margin-end >
+      <ion-label>Resumen reserva</ion-label>
+    </ion-button>
+  </ion-toolbar>
+</ion-footer>

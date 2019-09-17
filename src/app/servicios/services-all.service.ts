@@ -67,7 +67,7 @@ export class ServicesAllService {
 
 
 
-  GuardarPasajero(pasajeros: any) {
+GuardarPasajero(pasajeros: any) {
     this.pasajeros = pasajeros;
 
   }

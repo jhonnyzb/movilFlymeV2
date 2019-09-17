@@ -303,33 +303,6 @@ export class FormTicketPersonalPage implements OnInit {
     )
   }
 
-  resumenReserva() {
-    this.storage.get('resumen').then(
-      (res) => {
-        this.resumenReserva_(res);
-      }
-
-    )
-
-  }
-
-
-  async resumenReserva_(resumen) {
-    const modal = await this.modalController.create({
-      component: ResumenReservaPage,
-      componentProps: {
-        resumen: resumen
-      }
-    });
-    return await modal.present();
-  }
-
-
-
-
-
-
-
 
 
   async presentAlert(mensaje) {
@@ -358,13 +331,11 @@ export class FormTicketPersonalPage implements OnInit {
       component: TucuentaComponent,
       event: evento,
       mode: 'ios',
-      //componentProps: { idopcion: idvalue },
-      //cssClass: 'popover_class',
-      //backdropDismiss: false,
+     
       translucent: true
     });
     await popover.present();
-    //const { data } = await popover.onDidDismiss();
+ 
     const { data } = await popover.onWillDismiss();
   }
 }

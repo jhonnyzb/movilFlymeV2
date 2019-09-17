@@ -14,7 +14,7 @@
 
 
 <ion-content padding>
-  <!-- <ion-tabs>
+  <ion-tabs>
     <ion-tab-bar slot="top">
       <ion-tab-button tab="laboral-ida">
         <ion-icon name="return-right"></ion-icon>
@@ -29,9 +29,9 @@
           <ion-label>Multitrayecto</ion-label>
         </ion-tab-button>
     </ion-tab-bar>
-  </ion-tabs> -->
+  </ion-tabs>
 
-  <ion-item text-center>
+  <!-- <ion-item text-center>
     <ion-label color="primary">Datos Basicos solicitante</ion-label>
   </ion-item>
   <ion-row>
@@ -66,21 +66,7 @@
     <ion-label color="primary">Detalles solicitud</ion-label>
   </ion-item>
 
-  <ion-row>
-  <ion-col size="6">
-    <ion-label class="ion-label_">Nac/Int </ion-label>
-    <ion-select placeholder="Seleccione uno" interface="popover" (ionChange)="cambioTipo($event)">
-      <ion-select-option value="nacional" >Nacional</ion-select-option>
-      <ion-select-option value="internacional" >Internacional</ion-select-option>
-    </ion-select>
-  </ion-col>
-  <ion-col size="6">
-      <ion-item>
-        <ion-label class="ion-label_" position="floating"># viajero frecuente</ion-label>
-        <ion-input clearInput type="number"  name="numeroViajeroFrecuente" [(ngModel)]="numeroViajeroFrecuente" ></ion-input>
-      </ion-item>
-    </ion-col>
-</ion-row>
+  
   <ion-row>
     <ion-col size="6">
       <ion-label class="ion-label_">Motivo </ion-label>
@@ -176,14 +162,14 @@
     <ion-col size="4" text-center>
       <ion-button color="footer" (click)="PopFormMultitrayecto()" >Multitrayecto</ion-button>
     </ion-col>
-</ion-row>
+</ion-row> -->
 
 
 
 </ion-content>
 
 
-<ion-footer>
+<!-- <ion-footer>
   <ion-toolbar color="footer" text-center>
     <ion-button color="footer" margin-end (click)="enviarPasajeLaboral()">
       <ion-icon name="add-circle"></ion-icon>
@@ -194,4 +180,4 @@
       <ion-label>Calendario</ion-label>
     </ion-button>
   </ion-toolbar>
-</ion-footer>
+</ion-footer> -->

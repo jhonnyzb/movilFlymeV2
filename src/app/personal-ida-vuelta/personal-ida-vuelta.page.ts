@@ -1,11 +1,12 @@
 import { Component, OnInit } from '@angular/core';
-import { PopoverController, AlertController } from '@ionic/angular';
+import { PopoverController, AlertController, ModalController } from '@ionic/angular';
 import { NacionalEInternacionalComponent } from '../componentes/nacional-einternacional/nacional-einternacional.component';
 import { PopCiudadesComponent } from '../componentes/pop-ciudades/pop-ciudades.component';
 import * as moment from 'moment';
 import { Router, ActivatedRoute } from '@angular/router';
 import { ServicesAllService } from '../servicios/services-all.service';
 import { Storage } from '@ionic/storage';
+import { ResumenReservaPage } from '../resumen-reserva/resumen-reserva.page';
 
 @Component({
   selector: 'app-personal-ida-vuelta',
@@ -45,8 +46,16 @@ export class PersonalIdaVueltaPage implements OnInit {
   pasajeros: any[] = [];
   totalPasajeros: string = 'Agregar pasajeros';
   trayectoVuelo: string = 'ida_vuelta'
+  datosResumen = {
+    tipoTrayecto: '',
+    fechaIda:'',
+    horaIda: '',
+    tipoVuelo:'',
+    ciudadOrigen:'',
+    ciudadDestino:''
+  };
 
-  constructor(public popoverController: PopoverController, public router: Router, private activatedRoute: ActivatedRoute, private servicio: ServicesAllService, private storage: Storage, public alert: AlertController) { }
+  constructor(public popoverController: PopoverController, public router: Router, private activatedRoute: ActivatedRoute, private servicio: ServicesAllService, private storage: Storage, public alert: AlertController, private modalController: ModalController) { }
 
   ngOnInit() {
     this.activatedRoute.url.subscribe(url => {
@@ -55,12 +64,10 @@ export class PersonalIdaVueltaPage implements OnInit {
         let total = this.pasajeros.length;
         this.totalPasajeros = 'Total de pasajeros: ' + total
         this.colorPasajeros = 'tertiary'
-        //this.resumen.push({ item6: this.pasajeros })
-        //this.storage.set('resumen', this.resumen)
       }
     });
-    //this.resumen.push({ item2: this.trayectoVuelo })
-    //this.storage.set('resumen', this.resumen)
+    this.datosResumen.tipoTrayecto = this.trayectoVuelo
+  
 
 
 
@@ -83,8 +90,7 @@ this.opcionesFechaIda = {
       }
       this.fechaida = event.year.value + '-' + this.mesparcial + '-' + this.diaparcial;
       this.colorFechaIda = 'tertiary'
-      //this.resumen.push({ item3: this.fechaida })
-      //this.storage.set('resumen', this.resumen)
+      this.datosResumen.fechaIda = this.fechaida;
 
     }
   }, {
@@ -138,9 +144,7 @@ this.opcionesHoraIda = {
       }
       this.horaIda = this.horaparcial + ':' + event.minute.text + ' ' + event.ampm.text;
       this.colorHoraIda = 'tertiary'
-      //this.resumen.push({ item4: this.horaIda })
-      //this.storage.set('resumen', this.resumen)
-
+      this.datosResumen.horaIda = this.horaIda;
 
     }
   }, {
@@ -195,9 +199,7 @@ this.optionspickersHr = {
     this.tipoVuelo = data.tipoVuelo;
     this.textoTipoVuelo = data.tipoVuelo
     this.colorTipoTrayecto = 'tertiary'
-    //this.resumen.push({ item1: this.textoTipoVuelo })
-    //this.storage.set('resumen', this.resumen)
-
+    this.datosResumen.tipoVuelo = this.tipoVuelo;
   }
 
 
@@ -214,9 +216,7 @@ this.optionspickersHr = {
     this.ciudadOrigen = data.ciudad;
     this.textBotonCiudadO = data.ciudad.ciudad;
     this.colorCiudadOrigen = 'tertiary'
-    //this.resumen.push({ item5: this.textBotonCiudadO })
-    //sthis.storage.set('resumen', this.resumen)
-
+    this.datosResumen.ciudadOrigen = this.ciudadOrigen;
   }
 
 
@@ -232,6 +232,7 @@ this.optionspickersHr = {
     this.ciudadDestino = data.ciudad;
     this.textBotonCiudadR = data.ciudad.ciudad;
     this.colorCiudadDestino = 'tertiary';
+    this.datosResumen.ciudadDestino = this.ciudadDestino;
   }
 
 
@@ -328,6 +329,17 @@ this.optionspickersHr = {
       buttons: ['OK']
     });
     await alert.present();
+  }
+
+
+  async resumenReserva() {
+    const modal = await this.modalController.create({
+      component: ResumenReservaPage,
+      componentProps: {
+        resumen: this.datosResumen
+      }
+    });
+    return await modal.present();
   }
 
 

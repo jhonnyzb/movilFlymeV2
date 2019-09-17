@@ -15,42 +15,42 @@
     <ion-icon name="jet" color="footer" slot="start"></ion-icon>
     <ion-label>
       <h3>Tipo trayecto</h3>
-      <p>{{resumen[0].tipoTrayecto}}</p>
+      <p>{{resumen.tipoTrayecto}}</p>
     </ion-label>
   </ion-item>
   <ion-item>
     <ion-icon name="airplane" color="footer" slot="start"></ion-icon>
     <ion-label >
       <h3>Tipo vuelo</h3>
-      <p *ngIf="resumen[1]">{{resumen[1].tipoVuelo}}</p>
+      <p>{{resumen.tipoVuelo}}</p>
     </ion-label>
   </ion-item>
   <ion-item>
     <ion-icon name="globe" color="footer" slot="start"></ion-icon>
     <ion-label >
       <h3>Ciudad Origen</h3>
-      <p *ngIf="resumen[2]">{{resumen[2].ciudadOrigen}}</p>
+      <p >{{resumen.ciudadOrigen}}</p>
     </ion-label>
   </ion-item>
   <ion-item>
     <ion-icon name="globe" color="footer" slot="start"></ion-icon>
     <ion-label>
       <h3>Ciudad Destino</h3>
-      <p *ngIf="resumen[3]">{{resumen[3].ciudadDestino}}</p>
+      <p >{{resumen.ciudadDestino}}</p>
     </ion-label>
   </ion-item>
   <ion-item>
     <ion-icon name="calendar" color="footer" slot="start"></ion-icon>
     <ion-label>
       <h3>Fecha Ida</h3>
-      <p *ngIf="resumen[4]">{{resumen[4].fechaIda}}</p>
+      <p>{{resumen.fechaIda}}</p>
     </ion-label>
   </ion-item>
   <ion-item>
     <ion-icon name="time" color="footer" slot="start"></ion-icon>
     <ion-label>
       <h3>Hora Ida</h3>
-      <p *ngIf="resumen[5]">{{resumen[5].horaIda}}</p>
+      <p>{{resumen.horaIda}}</p>
     </ion-label>
   </ion-item>
 

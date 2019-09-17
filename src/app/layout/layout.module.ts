@@ -17,10 +17,6 @@ const routes: Routes = [
         loadChildren: () => import ('../home/home.module').then(m => m.HomePageModule)
       },
       {
-        path: 'sotickets',
-        loadChildren: () => import ('../sotickets/sotickets.module').then(m => m.SoticketsPageModule)
-      },
-      {
         path: 'calendario',
         loadChildren: () => import ('../calendario/calendario.module').then(m => m.CalendarioPageModule)
       },

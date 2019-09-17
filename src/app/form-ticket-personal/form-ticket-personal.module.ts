@@ -10,8 +10,7 @@ import { PopCiudadesComponent } from '../componentes/pop-ciudades/pop-ciudades.c
 import { ComponentesModule } from '../componentes/componentes.module';
 import { PopAddPasejerosPersonalComponent } from '../componentes/pop-add-pasejeros-personal/pop-add-pasejeros-personal.component';
 import { TucuentaComponent } from '../componentes/tucuenta/tucuenta.component';
-import { ResumenReservaPage } from '../resumen-reserva/resumen-reserva.page';
-import { ResumenReservaPageModule } from '../resumen-reserva/resumen-reserva.module';
+
 
 const routes: Routes = [
   {
@@ -39,7 +38,7 @@ const routes: Routes = [
     PopCiudadesComponent,
     PopAddPasejerosPersonalComponent,
     TucuentaComponent,
-    ResumenReservaPage
+    
   ],
   imports: [
     CommonModule,
@@ -47,7 +46,6 @@ const routes: Routes = [
     IonicModule,
     RouterModule.forChild(routes),
     ComponentesModule,
-    ResumenReservaPageModule
 
   ],
   declarations: [FormTicketPersonalPage]

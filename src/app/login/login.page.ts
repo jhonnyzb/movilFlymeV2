@@ -47,8 +47,11 @@ export class LoginPage implements OnInit, OnDestroy {
         }         
         },
       (err)=>{
+        this.loginCargue = false
+        this.loginActual = true
        this.presentAlertErrorBackend(err)
        console.log(err)
+       this.router.navigate(['/layout'])
     
       }
     )
