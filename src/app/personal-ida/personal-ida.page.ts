@@ -49,6 +49,7 @@ export class PersonalIdaPage implements OnInit, OnDestroy {
     ciudadOrigen:'',
     ciudadDestino:''
   };
+  loaderToShow:any;
 
 
   constructor(public popoverController: PopoverController, private activatedRoute: ActivatedRoute, private storage: Storage, public router: Router, private servicio: ServicesAllService, public alert: AlertController, private modalController: ModalController) {
@@ -58,7 +59,7 @@ export class PersonalIdaPage implements OnInit, OnDestroy {
 
 
   ngOnInit() {
-
+   
     this.activatedRoute.url.subscribe(url => {
       this.pasajeros = this.servicio.entregarPasajeros();
       if (this.pasajeros.length > 0) {
@@ -203,6 +204,7 @@ export class PersonalIdaPage implements OnInit, OnDestroy {
 
 
   sendSolicitud() {
+  
     this.storage.get('datos').then(
       (res: any) => {
         let solicitud = {
@@ -226,6 +228,7 @@ export class PersonalIdaPage implements OnInit, OnDestroy {
         console.log(solicitud)
         this.servicio.solicitudPasajepersonal(solicitud).subscribe(
           (res: any) => {
+            
             console.log(res)
             if (res.codigoRespuesta == 0) {
               let mensaje = 'enviada con exito'
@@ -250,8 +253,10 @@ export class PersonalIdaPage implements OnInit, OnDestroy {
     ).catch(
 
       error => {
+      
         console.log('error sessionId no existente', error)
         this.router.navigate(['/layout'])
+      
       }
     )
   }
@@ -291,9 +296,8 @@ export class PersonalIdaPage implements OnInit, OnDestroy {
 
 
 
-
-
   ngOnDestroy() {
+    
     let limpiarPasajeros = [];
     this.servicio.GuardarPasajero(limpiarPasajeros)
   }
